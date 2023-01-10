@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class BboardConfig(AppConfig):
-    name = 'bboard'
+class MainConfig(AppConfig):
+    name = 'main'
     verbose_name = 'Доска объявлений'
