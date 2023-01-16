@@ -1,11 +1,23 @@
-from django.urls import path
+from django.urls import path, reverse_lazy
+from django.contrib.auth.views import PasswordResetCompleteView, PasswordResetConfirmView, PasswordResetDoneView, \
+    PasswordResetView
 
 from .views import index, other_page, BBLoginView, profile, BBLogoutView, ChangeUserInfoView, BBPasswordChangeView, \
-    RegisterUserView, RegisterDoneView, user_activate
+    RegisterUserView, RegisterDoneView, user_activate, DeleteUserView
 
 app_name = 'main'
 
 urlpatterns = [
+    path('accounts/password_reset/', PasswordResetView.as_view(email_template_name='email/password_reset_email.html',
+                                                               success_url=reverse_lazy('main:password_reset_done')),
+         name='password_reset'),
+    path('accounts/password_reset/done', PasswordResetDoneView.as_view(template_name='main/password_reset_done.html'),
+         name='password_reset_done'),
+    path('accounts/reset/<uidb64>/<token>/', PasswordResetConfirmView.as_view(
+        success_url=reverse_lazy('main:password_reset_complete')), name='password_reset_confirm'),
+    path('accounts/reset/done/', PasswordResetCompleteView.as_view(template_name='main/password_reset_complete.html'),
+         name='password_reset_complete'),
+    path('accounts/profile/delete/', DeleteUserView.as_view(), name='profile_delete'),
     path('account/register/activate/<str:sign>/', user_activate, name='register_activate'),
     path('accounts/register/done/', RegisterDoneView.as_view(), name='register_done'),
     path('accounts/register/', RegisterUserView.as_view(), name='register'),
