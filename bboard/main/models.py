@@ -18,7 +18,7 @@ class Rubric(models.Model):
                                      verbose_name='Надрубрика')
 
 
-class SuperRubricManager(models.Model):
+class SuperRubricManager(models.Manager):
 
     def get_queryset(self):
         return super().get_queryset().filter(super_rubric__isnull=True)
@@ -37,17 +37,17 @@ class SuperRubric(Rubric):
         verbose_name_plural = 'Надрубрики'
 
 
-class SubRubricManager(models.Model):
+class SubRubricManager(models.Manager):
 
     def get_queryset(self):
-        return super.get_queryset().filter(super_rubric__isnull=False)
+        return super().get_queryset().filter(super_rubric__isnull=False)
 
 
 class SubRubric(Rubric):
     objects = SubRubricManager()
 
     def __str__(self):
-        return self.name
+        return '%s - %s' % (self.super_rubric.name, self.name)
 
     class Meta:
         proxy = True
