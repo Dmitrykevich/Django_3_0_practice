@@ -78,6 +78,9 @@ class Bb(models.Model):
             ai.delete()
         super().delete(*args, **kwargs)
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         verbose_name_plural = 'Объявления'
         verbose_name = 'Объявление'
