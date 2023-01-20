@@ -28,5 +28,7 @@
   {% endfor %}
 </div>
 {% endif %}
+<p><a href="{% url 'main:profile_bb_delete' pk=bb.pk %}">Удалить</a></p>
+<p><a href="{% url 'main:profile_bb_change' pk=bb.pk %}">Редактировать</a></p>
 <p><a href="{% url 'main:profile' %}">Назад</a></p>
 {% endblock %}

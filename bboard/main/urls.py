@@ -3,7 +3,8 @@ from django.contrib.auth.views import PasswordResetCompleteView, PasswordResetCo
     PasswordResetView
 
 from .views import index, other_page, BBLoginView, profile, BBLogoutView, ChangeUserInfoView, BBPasswordChangeView, \
-    RegisterUserView, RegisterDoneView, user_activate, DeleteUserView, by_rubric, detail, profile_bb_detail
+    RegisterUserView, RegisterDoneView, user_activate, DeleteUserView, by_rubric, detail, profile_bb_detail, \
+    profile_bb_add, profile_bb_change, profile_bb_delete
 
 app_name = 'main'
 
@@ -25,6 +26,9 @@ urlpatterns = [
     path('accounts/profile/change/', ChangeUserInfoView.as_view(), name='profile_change'),
     path('accounts/logout/', BBLogoutView.as_view(), name='logout'),
     path('accounts/profile/<int:pk>/', profile_bb_detail, name='profile_bb_detail'),
+    path('accounts/profile/delete/<int:pk>/', profile_bb_delete, name='profile_bb_delete'),
+    path('account/profile/change/<int:pk>/', profile_bb_change, name='profile_bb_change'),
+    path('accounts/profile/add/', profile_bb_add, name='profile_bb_add'),
     path('accounts/profile/', profile, name='profile'),
     path('accounts/login/', BBLoginView.as_view(), name='login'),
     path('<int:rubric_pk>/<int:pk>/', detail, name='detail'),

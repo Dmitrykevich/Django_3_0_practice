@@ -19,6 +19,7 @@
     </div>
   </div>
 </div>
+
 {% if ais %}
 <div class="d-flex justify-content-between flex-wrap mt-5">
   {% for ai in ais %}
@@ -28,6 +29,5 @@
   {% endfor %}
 </div>
 {% endif %}
-<p><a href="{% url 'main:by_rubric' pk=bb.rubric.pk %}{{ all }}">Назад</a></p>
 
 {% endblock %}
