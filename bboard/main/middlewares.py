@@ -11,7 +11,7 @@ def bboard_context_processor(request):
 
     if 'page' in request.GET:
         page = request.GET['page']
-        if page !='1':
+        if page != '1':
             if context['all']:
                 context['all'] += '&page=' + page
             else:
