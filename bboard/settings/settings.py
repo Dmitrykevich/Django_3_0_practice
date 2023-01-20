@@ -139,4 +139,4 @@ THUMBNAIL_ALIASES = {
         },
     },
 }
-THUMBNAIL_BASEDIR = 'thumbnails'
+THUMBNAIL_BASEDIR = 'media/thumbnails'
